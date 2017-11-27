@@ -24,9 +24,15 @@ class Tagger(object):
         NodeList = []
         while True:
             nodeTmpDict = {key:{'surface':[], 'feature':[], 'wordLength':0}  for key in self.dictionaries}
-            while all(value['wordLength'] for value in nodeTmpDict.values):
-            for i, key in enumerate(nodesDict):
-                
+            surfaceLengthList = [len(value['wordLength']) for value in nodeTmpDict]
+            maxSurfaceLength = -1
+            while all(i==maxSurfaceLength for i in surfaceLengthList):
+                for i, key in enumerate(nodesDict):
+                    if nodeTmpDict[key]['wordLength'] == maxSurfaceLength:
+                        continue
+                    nodeTmpDict[key]['surface'].append(nodesDict[key].surface)
+                    nodeTmpDict[key]['feature'].append(nodesDict[key].feature)
+                    
 
         return _MeCab.Tagger_parseToNode(self, *args)
 
