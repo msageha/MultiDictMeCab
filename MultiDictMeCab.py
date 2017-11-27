@@ -33,6 +33,7 @@ class Tagger(object):
                     nodeTmpDict[key]['surface'].append(nodesDict[key].surface)
                     nodeTmpDict[key]['feature'].append(nodesDict[key].feature)
                     
+                    
 
         return _MeCab.Tagger_parseToNode(self, *args)
 
