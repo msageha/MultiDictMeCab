@@ -24,7 +24,7 @@ class Tagger:
             maxSurfaceSumLength = -1
             while not all(i==maxSurfaceSumLength for i in surfaceSumLengthDict.values()):
                 for key in self.dictionaries:
-                    #TODO:::ここ上長な処理
+                    #TODO:::ここ上長な処理．もう少し効率化したい
                     node = nodeTmpDictForNodesList[key]
                     while node.next:
                         node = node.next
