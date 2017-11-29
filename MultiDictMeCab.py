@@ -60,17 +60,17 @@ class Node:
             totalLength += prevNode.totalLength
         self.totalLength = totalLength
 
-    def totalLength():
+    def totalLength(self):
         return self.totalLength
 
-    def surface():
+    def surface(self):
         return self.surface
 
-    def feature():
+    def feature(self):
         return self.feature
 
-    def next():
+    def next(self):
         return self.next
 
-    def prev():
+    def prev(self):
         return self.prev
