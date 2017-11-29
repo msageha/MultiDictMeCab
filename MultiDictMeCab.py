@@ -15,10 +15,6 @@ class Tagger:
         pass
 
     def parseToNode(self, text):
-        """与えられた文字列を形態素解析し、MeCabライクなイテレータnodeを返す
-        MeCabとは異なり、戻り値はPythonのイテレータなのでwhileで使うときはnode.next()を呼び出す。
-        その代わり、MeCabでは不可能であったPythonライクなfor文や内包表記をサポートしています。
-        """
         text = text.strip()
         mecabNodesDict = {key:tagger.parseToNode(text).next for key, tagger in self.taggerDict.items()}
         nodesList = []
