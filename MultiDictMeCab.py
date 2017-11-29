@@ -60,17 +60,57 @@ class Node:
             totalLength += prevNode.totalLength
         self.totalLength = totalLength
 
-    def totalLength(self):
-        return self.totalLength
+    # def totalLength(self):
+    #     return self.totalLength
 
-    def surface(self):
-        return self.surface
+    # def surface(self):
+    #     return self.surface
 
-    def feature(self):
-        return self.feature
+    # def feature(self):
+    #     return self.feature
 
-    def next(self):
-        return self.next
+    # def next(self):
+    #     return self.next
 
-    def prev(self):
-        return self.prev
+    # def prev(self):
+    #     return self.prev
+
+if __name__ == '__main__':
+    text = input()
+    multiDict = Tagger()
+    nodes = multiDict.parseToNode(text)
+
+    outputSurface = {key:[] for key in multiDict.dictionaries}
+    outputFeature = {key:[] for key in multiDict.dictionaries}
+    for nodeDic in nodes:
+        for dic in multiDict.dictionaries:
+            node = nodeDic[dic]
+            while node:
+                outputSurface[dic].append(node.surface)
+                outputFeature[dic].append(node.feature)
+                node = node.next
+        length = max([len(i) for i in outputSurface.values()])
+        for dic in multiDict.dictionaries:
+            for i in range(length - len(outputSurface[dic])):
+                outputSurface[dic].append('')
+                outputFeature[dic].append('')
+
+    #出力
+    print('---surface---')
+    for key in multiDict.dictionaries:
+        print(f'{key}', end='\t')
+    print()
+    for i in range(length):
+        for key in multiDict.dictionaries:
+            print(f'{outputSurface[key][i]}', end='\t')
+        print()
+
+    print('---feature---')
+    for key in multiDict.dictionaries:
+        print(f'{key}\t feature ', end='\t')
+    print()
+    for i in range(length):
+        for key in multiDict.dictionaries:
+            print(f'{outputSurface[key][i]}\t{outputFeature[key][i]}', end='\t')
+        print()
+
